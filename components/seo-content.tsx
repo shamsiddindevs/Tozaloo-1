@@ -1,11 +1,20 @@
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-
+import { SEO } from "@/components/SEO";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {Ruler, Package, Globe, Award} from "lucide-react";
 
 export function SEOContentSection() {
   return (
+
+    <>
+    <SEO
+        title="Pol Lattalar - Pol Yuvish Uchun Mahsulotlar | FloorTech"
+        description="Pol lattalar va pol yuvish mahsulotlari. Yuqori sifat, mos narxlar va MDH bozorlariga yetkazib berish."
+        url="https://tozaloo.uz"
+        image="/images/preview.png"
+      />
+    
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* SEO-optimized main content */}
@@ -157,5 +166,6 @@ export function SEOContentSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
