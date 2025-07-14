@@ -1,5 +1,5 @@
 "use client";
-
+import Head from 'next/head';
 import type React from "react";
 
 import {useState} from "react";
@@ -341,6 +341,16 @@ export default function HomePage() {
   return (
     <div
       className="min-h-screen bg-white relative ">
+      <Head>
+        <title>Tozaloo | Pol Lattalari va Tozalash Mahsulotlari</title>
+        <meta
+          name="description"
+          content="Tozaloo - Pol lattalari, pol yuvish vositalari va boshqa tozalash mahsulotlari. Sifatli, ishonchli va MDH bozorlariga mos mahsulotlar bilan xizmatdamiz."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.tozaloo.uz/" />
+      </Head>
       {/* Header */}
       <header className=" backdrop-blur supports-[backdrop-filter]:transparent sticky top-0 py-2 z-50">
         <div className="container relative mx-auto px-4 py-4">
