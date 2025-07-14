@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.tozaloo.uz
+
+# Sitemaps
+Sitemap: https://www.tozaloo.uz/sitemap.xml
