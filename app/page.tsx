@@ -31,6 +31,7 @@ import {
   Star,
   CheckCircle,
 } from "lucide-react";
+import {Span} from "next/dist/trace";
 
 const languages = {
   uz: {
@@ -41,22 +42,23 @@ const languages = {
       contact: "Aloqa",
     },
     hero: {
-      title: "Tozalash Sohasida Eng Ishonchli Hamkoringiz",
+      title1: "OSON VA QULAY",
+      title2: "TOZALASH USULI",
       subtitle:
-        "TOZALOO - yuqori sifatli tozalash vositalari va professional pol lattalar ishlab chiqaruvchisi. Sizning barcha ehtiyojlaringiz uchun mukammal yechim.",
-      cta: "Katalogni ko&apos;rish",
+        "TozaLoo - uy va ofislar uchun mo'ljallangan yuqori sifatli tozalash vositalari ishlab chiqaruvchisi. Barcha tozalash ehtiyojlaringiz uchun ishonchli yechim.",
+      cta: "Katalogni ko'rish",
       contact: "Aloqa",
     },
     seoContent: {
       title:
-        "Tozalash Vositalari va Professional Xizmatlar - Sizning Muvaffaqiyat Kaliti!",
+        "Professional Pol Lattalari Ishlab Chiqaruvchi - Sizning Ishonchli Hamkoringiz!",
       description:
-        "Sizga yuqori sifatli tozalash vositalari va professional pol lattalar kerakmi? TOZALOO bilan tanishing - bu sohadagi eng ishonchli brenddir!",
+        "Yuqori sifatli pol lattalari kerakmi? TozaLoo bilan tanishing - Toshkent shahridagi yetakchi ishlab chiqaruvchi!",
     },
     about: {
       title: "Biz Haqimizda",
       subtitle:
-        "Professional tozalash vositalari ishlab chiqarishda yetakchi korxona",
+        "Toshkent shahrida joylashgan pol lattalar ishlab chiqarish va eksport yetakchisi",
       experience: "Yillik Tajriba",
       clients: "Mamnun Mijozlar",
       products: "Mahsulot Turlari",
@@ -64,36 +66,36 @@ const languages = {
       content: {
         quality: "Yuqori Sifat Kafolati",
         qualityDesc:
-          "Barcha mahsulotlarimiz xalqaro standartlarga javob beradi va eng yuqori sifat talablariga mos keladi.",
+          "Barcha pol latalarimiz xalqaro standartlarga javob beradi va eng yuqori sifat talablariga mos keladi.",
         innovation: "Innovatsion Yechimlar",
         innovationDesc:
-          "Zamonaviy texnologiyalar va ilmiy yondashuvlar asosida ishlab chiqarilgan mahsulotlar.",
+          "Zamonaviy texnologiyalar asosida ishlab chiqarilgan pol lattalar.",
         service: "Professional Xizmat",
         serviceDesc:
-          "Mijozlarimizga 24/7 qo&apos;llab-quvvatlash va professional maslahat xizmatlari.",
+          "Mijozlarimizga 24/7 qo'llab-quvvatlash va professional maslahat xizmatlari.",
         delivery: "Tez Yetkazib Berish",
         deliveryDesc:
-          "O&apos;zbekiston va MDH davlatlari bo&apos;ylab tez va ishonchli yetkazib berish xizmati.",
+          "O'zbekiston va MDH davlatlari bo'ylab tez va ishonchli yetkazib berish xizmati.",
         additional:
-          "Bizning korxonamiz zamonaviy uskunalar bilan jihozlangan bo&apos;lib, har bir mahsulot qat&apos;iy sifat nazorati ostida ishlab chiqariladi. Biz mijozlarimizning ehtiyojlarini birinchi o&apos;ringa qo&apos;yamiz va har doim eng yaxshi xizmatni taqdim etishga intilamiz. Sizning muvaffaqiyatingiz - bizning maqsadimiz!",
+          "Bizning korxonamiz Toshkent shahrida joylashgan bo'lib, zamonaviy uskunalar bilan jihozlangan. Har bir pol latta qat'iy sifat nazorati ostida ishlab chiqariladi. Biz Toshkent va MDH davlatlaridagi pol latta ishlab chiqaruvchi yetakchi korxona sifatida mijozlarimizning ehtiyojlarini birinchi o'ringa qo'yamiz.",
       },
     },
     products: {
-      title: "Mahsulotlar Katalogi",
-      subtitle: "Har xil ehtiyojlar uchun keng assortiment",
+      title: "Pol Lattalar Katalogi",
+      subtitle: "Har xil ehtiyojlar uchun keng assortimentdagi pol lattalari",
       order: "Buyurtma berish",
     },
     contact: {
-      title: "Biz bilan bog&apos;laning",
+      title: "Biz bilan bog'laning",
       subtitle: "Savollaringiz bormi? Biz sizga yordam berishga tayyormiz",
       name: "Ism",
       phone: "Telefon",
       message: "Xabar",
       send: "Yuborish",
-      info: "Aloqa Ma&apos;lumotlari",
+      info: "Aloqa Ma'lumotlari",
       workTime: "Ish vaqti: 9:00 - 18:00",
-      support: "24/7 qo&apos;llab-quvvatlash",
-      factory: "Ishlab chiqarish sexi",
+      support: "24/7 qo'llab-quvvatlash",
+      factory: "Ishlab chiqarish sexi: Toshkent shahri",
       telegram: "Telegram orqali aloqa",
     },
   },
@@ -105,22 +107,23 @@ const languages = {
       contact: "Контакты",
     },
     hero: {
-      title: "Самый Надежный Партнер в Сфере Уборки",
+      title1: "ЛЕГКОЕ И УДОБНОЕ",
+      title2: "СРЕДСТВО ДЛЯ УБОРКИ",
       subtitle:
-        "TOZALOO - производитель высококачественных чистящих средств и профессиональных напольных покрытий. Идеальное решение для всех ваших потребностей.",
+        "TozaLoo - производитель высококачественных чистящих средств для дома и офиса. Надежное решение для всех ваших потребностей в уборке.",
       cta: "Смотреть каталог",
       contact: "Связаться",
     },
     seoContent: {
       title:
-        "Чистящие Средства и Профессиональные Услуги - Ключ к Вашему Успеху!",
+        "Производитель Профессиональных Напольных Покрытий - Ваш Надежный Партнер!",
       description:
-        "Нужны высококачественные чистящие средства и профессиональные напольные покрытия? Познакомьтесь с TOZALOO - самым надежным брендом в этой сфере!",
+        "Нужны высококачественные напольные покрытия? Познакомьтесь с TozaLoo - ведущим производителем в Ташкенте!",
     },
     about: {
       title: "О нас",
       subtitle:
-        "Ведущее предприятие по производству профессиональных чистящих средств",
+        "Ведущий производитель и экспортер напольных покрытий, расположенный в Ташкенте",
       experience: "Лет опыта",
       clients: "Довольных клиентов",
       products: "Видов продукции",
@@ -128,10 +131,10 @@ const languages = {
       content: {
         quality: "Гарантия Высокого Качества",
         qualityDesc:
-          "Вся наша продукция соответствует международным стандартам и отвечает самым высоким требованиям качества.",
+          "Все наши напольные покрытия соответствуют международным стандартам и отвечают самым высоким требованиям качества.",
         innovation: "Инновационные Решения",
         innovationDesc:
-          "Продукция, разработанная на основе современных технологий и научных подходов.",
+          "Напольные покрытия, произведенные на основе современных технологий.",
         service: "Профессиональный Сервис",
         serviceDesc:
           "Круглосуточная поддержка клиентов и профессиональные консультационные услуги.",
@@ -139,12 +142,13 @@ const languages = {
         deliveryDesc:
           "Быстрая и надежная доставка по Узбекистану и странам СНГ.",
         additional:
-          "Наше предприятие оснащено современным оборудованием, и каждый продукт производится под строгим контролем качества. Мы ставим потребности наших клиентов на первое место и всегда стремимся предоставить лучший сервис. Ваш успех - наша цель!",
+          "Наше предприятие расположено в городе Ташкенте и оснащено современным оборудованием. Каждое напольное покрытие производится под строгим контролем качества. Мы являемся ведущим производителем напольных покрытий в Ташкенте и странах СНГ, ставя потребности наших клиентов на первое место.",
       },
     },
     products: {
-      title: "Каталог продукции",
-      subtitle: "Широкий ассортимент для различных потребностей",
+      title: "Каталог напольных покрытий",
+      subtitle:
+        "Широкий ассортимент напольных покрытий для различных потребностей",
       order: "Заказать",
     },
     contact: {
@@ -157,7 +161,7 @@ const languages = {
       info: "Контактная информация",
       workTime: "Рабочее время: 9:00 - 18:00",
       support: "Поддержка 24/7",
-      factory: "Производственный цех",
+      factory: "Производственный цех: г. Ташкент",
       telegram: "Связь через Telegram",
     },
   },
@@ -169,22 +173,22 @@ const languages = {
       contact: "Contact",
     },
     hero: {
-      title: "Your Most Reliable Partner in Cleaning Industry",
+      title1: "EASY AND CONVENIENT",
+      title2: "CLEANING PRODUCT",
       subtitle:
-        "TOZALOO - manufacturer of high-quality cleaning supplies and professional floor coverings. Perfect solution for all your needs.",
+        "TozaLoo - manufacturer of high-quality cleaning products for home and office. Reliable solution for all your cleaning needs.",
       cta: "View Catalog",
       contact: "Contact Us",
     },
     seoContent: {
-      title:
-        "Cleaning Supplies and Professional Services - The Key to Your Success!",
+      title: "Professional Floor Tiles Manufacturer - Your Reliable Partner!",
       description:
-        "Need high-quality cleaning supplies and professional floor coverings? Meet TOZALOO - the most reliable brand in this field!",
+        "Need high-quality floor tiles? Meet TozaLoo - the leading manufacturer in Tashkent!",
     },
     about: {
       title: "About Us",
       subtitle:
-        "Leading enterprise in professional cleaning supplies manufacturing",
+        "Leading floor tile production and export company based in Tashkent",
       experience: "Years Experience",
       clients: "Happy Clients",
       products: "Product Types",
@@ -192,10 +196,9 @@ const languages = {
       content: {
         quality: "High Quality Guarantee",
         qualityDesc:
-          "All our products meet international standards and comply with the highest quality requirements.",
+          "All our floor tiles meet international standards and comply with the highest quality requirements.",
         innovation: "Innovative Solutions",
-        innovationDesc:
-          "Products developed based on modern technologies and scientific approaches.",
+        innovationDesc: "Floor tiles developed based on modern technologies.",
         service: "Professional Service",
         serviceDesc:
           "24/7 customer support and professional consulting services.",
@@ -203,17 +206,17 @@ const languages = {
         deliveryDesc:
           "Fast and reliable delivery throughout Uzbekistan and CIS countries.",
         additional:
-          "Our enterprise is equipped with modern equipment, and each product is manufactured under strict quality control. We put our customers&apos; needs first and always strive to provide the best service. Your success is our goal!",
+          "Our company is located in Tashkent city and equipped with modern facilities. Each floor tile is manufactured under strict quality control. As a leading floor tile manufacturer in Tashkent and CIS countries, we put our customers' needs first.",
       },
     },
     products: {
-      title: "Product Catalog",
-      subtitle: "Wide range for different needs",
+      title: "Floor Tiles Catalog",
+      subtitle: "Wide range of floor tiles for different needs",
       order: "Order Now",
     },
     contact: {
       title: "Contact Us",
-      subtitle: "Have questions? We&apos;re here to help",
+      subtitle: "Have questions? We're here to help",
       name: "Name",
       phone: "Phone",
       message: "Message",
@@ -221,7 +224,7 @@ const languages = {
       info: "Contact Information",
       workTime: "Working hours: 9:00 - 18:00",
       support: "24/7 support",
-      factory: "Manufacturing facility",
+      factory: "Manufacturing facility: Tashkent city",
       telegram: "Contact via Telegram",
     },
   },
@@ -231,7 +234,7 @@ const products = [
   {
     id: 1,
     image: "/2.webp",
-    alt: "Professional cleaning mop - TOZALOO quality cleaning supplies",
+    alt: "Professional cleaning mop - TozaLoo quality cleaning supplies",
   },
   {
     id: 2,
@@ -246,7 +249,7 @@ const products = [
   {
     id: 4,
     image: "/14.jpg",
-    alt: "Commercial cleaning solutions - TOZALOO brand products",
+    alt: "Commercial cleaning solutions - TozaLoo brand products",
   },
   {
     id: 5,
@@ -336,40 +339,44 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className="min-h-screen bg-white relative ">
       {/* Header */}
-      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+      <header className=" backdrop-blur supports-[backdrop-filter]:transparent sticky top-0 py-2 z-50">
+        <div className="container relative mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Image
-                src="/tozaloo.png"
-                alt="TOZALOO - Professional Cleaning Supplies Logo"
+                src="/pollatta-sexi-logotipi.svg"
+                alt="TozaLoo - pol latta mahsulotlarini ishlab chiqarish sexi"
                 width={100}
                 height={40}
-                className="h-10 w-auto"
+                className="h-10 w-auto object-cover"
               />
+              <span className="text-gray-700 text-2xl font-bold">
+                <span className="text-[#1195FF]">Toza</span>Loo
+              </span>
             </div>
 
             <nav className="hidden md:flex items-center space-x-8">
               <button
                 onClick={() => scrollToSection("home")}
-                className="text-gray-700 hover:text-blue-600 transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors">
                 {t.nav.home}
               </button>
               <button
                 onClick={() => scrollToSection("about")}
-                className="text-gray-700 hover:text-blue-600 transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors">
                 {t.nav.about}
               </button>
               <button
                 onClick={() => scrollToSection("products")}
-                className="text-gray-700 hover:text-blue-600 transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors">
                 {t.nav.products}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-gray-700 hover:text-blue-600 transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors">
                 {t.nav.contact}
               </button>
             </nav>
@@ -391,36 +398,41 @@ export default function HomePage() {
               </Select>
               <Button
                 size="sm"
+                className="bg-[#1195FF] hover:bg-[#1195FF]/80"
                 onClick={handlePhoneCall}>
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className="w-4 h-4 mr-2 " />
                 {t.nav.contact}
               </Button>
             </div>
           </div>
         </div>
+        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-0 right-0 -z-100"></div>
+        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-[500px]   left-0 -z-100"></div>
       </header>
 
       {/* Hero Section */}
       <section
         id="home"
-        className="relative bg-gradient-to-br from-blue-50 to-gray-100 py-20">
+        className="w-full">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <span className="text-sm text-gray-600 ml-2">
                   Yuqori darajadagi sifat
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                {t.hero.title}
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <span className="text-[#1195FF]">{t.hero.title1}</span>
+                <br />
+                <span>{t.hero.title2}</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className=" text-gray-600 mb-8 leading-relaxed">
                 {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -443,17 +455,24 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative z-10">
                 <Image
-                  src="/hero.webp"
-                  alt="TOZALOO professional cleaning supplies and equipment"
-                  width={600}
+                  src="/1.webp"
+                  alt="Pollatalar ushlab turgan qiz"
+                  width={530}
                   height={500}
-                  className="rounded-2xl shadow-2xl"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-full h-full bg-blue-200 rounded-2xl -z-10"></div>
+              {/* <div className="absolute -bottom-6 -right-6 w-full h-full bg-blue-200 rounded-2xl z-10"></div> */}
             </div>
           </div>
         </div>
+        <Image
+          src="/line.svg"
+          alt="pol latta mahsulotlari"
+          width={1000}
+          height={1000}
+          className="absolute top-0 left-100 
+          z-10"
+        />
       </section>
 
       {/* SEO Content Section */}
@@ -478,7 +497,7 @@ export default function HomePage() {
                 </h3>
               </div>
               <div className="text-center">
-                <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <Award className="w-12 h-12 text-[#1195FF] mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {currentLang === "uz"
                     ? "Professional Xizmat"
@@ -508,7 +527,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-blue-600" />
+                <Award className="w-8 h-8 text-[#1195FF]" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">15+</div>
               <div className="text-gray-600">{t.about.experience}</div>
@@ -556,7 +575,7 @@ export default function HomePage() {
             <div>
               <Image
                 src="/4.webp"
-                alt="TOZALOO manufacturing facility with modern equipment"
+                alt="TozaLoo manufacturing facility with modern equipment"
                 width={600}
                 height={400}
                 className="rounded-xl shadow-lg"
@@ -565,7 +584,7 @@ export default function HomePage() {
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-blue-600" />
+                  <Shield className="w-6 h-6 text-[#1195FF]" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -728,12 +747,12 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-blue-600" />
+                      <Phone className="w-6 h-6 text-[#1195FF]" />
                     </div>
                     <div>
                       <button
                         onClick={handlePhoneCall}
-                        className="font-medium text-gray-900 hover:text-blue-600 transition-colors">
+                        className="font-medium text-gray-900 hover:text-[#1195FF] transition-colors">
                         +998 71 123 45 67
                       </button>
                       <p className="text-gray-600">{t.contact.workTime}</p>
@@ -745,7 +764,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">
-                        info@tozaloo.uz
+                        info@TozaLoo.uz
                       </p>
                       <p className="text-gray-600">{t.contact.support}</p>
                     </div>
@@ -763,15 +782,15 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <MessageCircle className="w-6 h-6 text-blue-600" />
+                      <MessageCircle className="w-6 h-6 text-[#1195FF]" />
                     </div>
                     <div>
                       <a
-                        href="https://t.me/tozaloo_uz"
+                        href="https://t.me/TozaLoo_uz"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-gray-900 hover:text-blue-600 transition-colors">
-                        @tozaloo_uz
+                        className="font-medium text-gray-900 hover:text-[#1195FF] transition-colors">
+                        @TozaLoo_uz
                       </a>
                       <p className="text-gray-600">{t.contact.telegram}</p>
                     </div>
@@ -789,7 +808,7 @@ export default function HomePage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="TOZALOO Location - Tashkent, Uzbekistan"
+                  title="TozaLoo Location - Tashkent, Uzbekistan"
                 />
               </div>
             </div>
