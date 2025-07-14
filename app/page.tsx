@@ -31,7 +31,7 @@ import {
   Star,
   CheckCircle,
 } from "lucide-react";
-import {Span} from "next/dist/trace";
+
 
 const languages = {
   uz: {
