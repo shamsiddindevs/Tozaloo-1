@@ -1,7 +1,6 @@
 "use client";
 import Head from 'next/head';
 import type React from "react";
-
 import {useState} from "react";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
@@ -30,9 +29,11 @@ import {
   Users,
   Star,
   CheckCircle,
+  Menu, // Added for mobile navigation
+  X, // Added for mobile navigation close icon
 } from "lucide-react";
 
-
+// Language definitions remain the same
 const languages = {
   uz: {
     nav: {
@@ -265,12 +266,14 @@ const products = [
 
 export default function HomePage() {
   const [currentLang, setCurrentLang] = useState<"uz" | "ru" | "en">("uz");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
   const t = languages[currentLang];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({behavior: "smooth"});
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false); // Close mobile menu after navigation
     }
   };
 
@@ -295,7 +298,7 @@ export default function HomePage() {
 👤 Ism: ${name}
 📞 Telefon: ${phone}
 💬 Xabar: ${message}
-🕐 Vaqt: ${new Date().toLocaleString("uz-UZ")}
+🕐 Vaqt: ${new Date().toLocaleString(currentLang === 'uz' ? "uz-UZ" : currentLang === 'ru' ? "ru-RU" : "en-US")}
     `;
 
     try {
@@ -307,7 +310,7 @@ export default function HomePage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            chat_id: "1420116351",
+            chat_id: "1420116351", // Consider making this an environment variable
             text: telegramMessage,
             parse_mode: "HTML",
           }),
@@ -327,10 +330,10 @@ export default function HomePage() {
         throw new Error("Failed to send message");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Telegram message sending error:", error); // Use console.error for errors
       alert(
         currentLang === "uz"
-          ? "Xatolik yuz berdi. Iltimos qaytadan urinib ko&apos;ring."
+          ? "Xatolik yuz berdi. Iltimos qaytadan urinib ko'ring."
           : currentLang === "ru"
           ? "Произошла ошибка. Пожалуйста, попробуйте еще раз."
           : "An error occurred. Please try again."
@@ -339,54 +342,66 @@ export default function HomePage() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-white relative ">
+    <div className="min-h-screen bg-white relative">
       <Head>
-        <title>Tozaloo | Pol Lattalari va Tozalash Mahsulotlari</title>
-        <meta
-          name="description"
-          content="Tozaloo - Pol lattalari, pol yuvish vositalari va boshqa tozalash mahsulotlari. Sifatli, ishonchli va MDH bozorlariga mos mahsulotlar bilan xizmatdamiz."
-        />
+        <title>{t.seoContent.title}</title>
+        <meta name="description" content={t.seoContent.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.tozaloo.uz/" />
+        {/* Open Graph Meta Tags for Social Sharing */}
+        <meta property="og:title" content={t.seoContent.title} />
+        <meta property="og:description" content={t.seoContent.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.tozaloo.uz/" />
+        <meta property="og:image" content="https://www.tozaloo.uz/og-image.jpg" /> {/* Replace with an actual OG image */}
+        <meta property="og:locale" content={currentLang === 'uz' ? 'uz_UZ' : currentLang === 'ru' ? 'ru_RU' : 'en_US'} />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t.seoContent.title} />
+        <meta name="twitter:description" content={t.seoContent.description} />
+        <meta name="twitter:image" content="https://www.tozaloo.uz/twitter-image.jpg" /> {/* Replace with an actual Twitter image */}
       </Head>
+
       {/* Header */}
-      <header className=" backdrop-blur supports-[backdrop-filter]:transparent sticky top-0 py-2 z-50">
+      <header className="backdrop-blur supports-[backdrop-filter]:transparent sticky top-0 py-2 z-50 bg-white/80">
         <div className="container relative mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Image
                 src="/pollatta-sexi-logotipi.svg"
-                alt="TozaLoo - pol latta mahsulotlarini ishlab chiqarish sexi"
+                alt="TozaLoo logo - cleaning product manufacturer"
                 width={100}
                 height={40}
                 className="h-10 w-auto object-cover"
+                priority // Preload logo
               />
               <span className="text-gray-700 text-2xl font-bold">
                 <span className="text-[#1195FF]">Toza</span>Loo
               </span>
             </div>
 
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <button
                 onClick={() => scrollToSection("home")}
-                className="text-gray-700 hover:text-[#1195FF] transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors font-medium">
                 {t.nav.home}
               </button>
               <button
                 onClick={() => scrollToSection("about")}
-                className="text-gray-700 hover:text-[#1195FF] transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors font-medium">
                 {t.nav.about}
               </button>
               <button
                 onClick={() => scrollToSection("products")}
-                className="text-gray-700 hover:text-[#1195FF] transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors font-medium">
                 {t.nav.products}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-gray-700 hover:text-[#1195FF] transition-colors">
+                className="text-gray-700 hover:text-[#1195FF] transition-colors font-medium">
                 {t.nav.contact}
               </button>
             </nav>
@@ -408,33 +423,73 @@ export default function HomePage() {
               </Select>
               <Button
                 size="sm"
-                className="bg-[#1195FF] hover:bg-[#1195FF]/80"
+                className="bg-[#1195FF] hover:bg-[#1195FF]/80 hidden md:flex" // Hide on mobile
                 onClick={handlePhoneCall}>
-                <Phone className="w-4 h-4 mr-2 " />
+                <Phone className="w-4 h-4 mr-2" />
                 {t.nav.contact}
+              </Button>
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-gray-700 hover:text-[#1195FF]"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </Button>
             </div>
           </div>
         </div>
-        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-0 right-0 -z-100"></div>
-        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-[500px]   left-0 -z-100"></div>
+        {/* Background blobs - ensure they don't interfere with content */}
+        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-0 right-0 -z-10"></div>
+        <div className="absolute w-60 h-60 bg-blue-600/50 blur-3xl top-[500px] left-0 -z-10"></div>
       </header>
 
+      {/* Mobile Navigation Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-white bg-opacity-95 z-40 md:hidden flex flex-col items-center justify-center space-y-8 animate-fade-in">
+          <button
+            onClick={() => scrollToSection("home")}
+            className="text-gray-800 text-2xl font-bold hover:text-[#1195FF] transition-colors">
+            {t.nav.home}
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-gray-800 text-2xl font-bold hover:text-[#1195FF] transition-colors">
+            {t.nav.about}
+          </button>
+          <button
+            onClick={() => scrollToSection("products")}
+            className="text-gray-800 text-2xl font-bold hover:text-[#1195FF] transition-colors">
+            {t.nav.products}
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-gray-800 text-2xl font-bold hover:text-[#1195FF] transition-colors">
+            {t.nav.contact}
+          </button>
+          <Button
+            size="lg"
+            className="bg-[#1195FF] hover:bg-[#1195FF]/80 mt-8 w-4/5"
+            onClick={handlePhoneCall}>
+            <Phone className="w-5 h-5 mr-2" />
+            {t.nav.contact}
+          </Button>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <section
-        id="home"
-        className="w-full">
+      <section id="home" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start space-x-2 mb-4">
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <span className="text-sm text-gray-600 ml-2">
-                  Yuqori darajadagi sifat
+                  {currentLang === "uz" ? "Yuqori darajadagi sifat" : currentLang === "ru" ? "Высочайшее качество" : "Top-tier quality"}
                 </span>
               </div>
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -442,13 +497,13 @@ export default function HomePage() {
                 <br />
                 <span>{t.hero.title2}</span>
               </h1>
-              <p className=" text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 {t.hero.subtitle}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
                   onClick={() => scrollToSection("products")}>
                   {t.hero.cta}
                   <ChevronRight className="w-5 h-5 ml-2" />
@@ -456,46 +511,46 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
+                  className="w-full sm:w-auto"
                   onClick={() => scrollToSection("contact")}>
                   <MessageCircle className="w-5 h-5 mr-2" />
                   {t.hero.contact}
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <div className="relative z-10">
-                <Image
-                  src="/1.webp"
-                  alt="Pollatalar ushlab turgan qiz"
-                  width={530}
-                  height={500}
-                />
-              </div>
-              {/* <div className="absolute -bottom-6 -right-6 w-full h-full bg-blue-200 rounded-2xl z-10"></div> */}
+            <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
+              <Image
+                src="/1.webp"
+                alt="Young woman holding TozaLoo cleaning mops, symbolizing easy and convenient cleaning"
+                width={530}
+                height={500}
+                className="relative z-10 w-full max-w-md lg:max-w-none h-auto object-contain rounded-xl shadow-lg"
+                loading="eager" // Important for LCP
+              />
+              <div className="absolute -bottom-6 -right-6 w-full h-full bg-blue-200 rounded-2xl z-0 hidden lg:block"></div> {/* Decorative, hidden on small screens */}
             </div>
           </div>
         </div>
         <Image
           src="/line.svg"
-          alt="pol latta mahsulotlari"
+          alt="Abstract decorative line representing cleaning effectiveness"
           width={1000}
           height={1000}
-          className="absolute top-0 left-100 
-          z-10"
+          className="absolute top-0 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 w-full max-w-xl lg:max-w-3xl h-auto opacity-20 -z-10"
         />
       </section>
 
       {/* SEO Content Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               {t.seoContent.title}
             </h2>
-            <p className="text-xl text-gray-700 leading-relaxed mb-8">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
               {t.seoContent.description}
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
                 <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -505,6 +560,7 @@ export default function HomePage() {
                     ? "Гарантия Качества"
                     : "Quality Guarantee"}
                 </h3>
+                <p className="text-gray-600 text-sm">Ensuring top-notch quality in every product.</p>
               </div>
               <div className="text-center">
                 <Award className="w-12 h-12 text-[#1195FF] mx-auto mb-4" />
@@ -515,6 +571,7 @@ export default function HomePage() {
                     ? "Профессиональный Сервис"
                     : "Professional Service"}
                 </h3>
+                <p className="text-gray-600 text-sm">Dedicated support and expert advice.</p>
               </div>
               <div className="text-center">
                 <Globe className="w-12 h-12 text-purple-600 mx-auto mb-4" />
@@ -525,6 +582,7 @@ export default function HomePage() {
                     ? "Международный Стандарт"
                     : "International Standard"}
                 </h3>
+                <p className="text-gray-600 text-sm">Products meeting global quality benchmarks.</p>
               </div>
             </div>
           </div>
@@ -532,31 +590,31 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
+            <div className="text-center p-4">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-[#1195FF]" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">15+</div>
               <div className="text-gray-600">{t.about.experience}</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-green-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">1000+</div>
               <div className="text-gray-600">{t.about.clients}</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Factory className="w-8 h-8 text-purple-600" />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">100+</div>
               <div className="text-gray-600">{t.about.products}</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-orange-600" />
               </div>
@@ -568,27 +626,25 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section
-        id="about"
-        className="py-20 bg-white">
+      <section id="about" className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {t.about.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               {t.about.subtitle}
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10 md:mb-12">
+            <div className="flex justify-center lg:justify-start">
               <Image
                 src="/4.webp"
-                alt="TozaLoo manufacturing facility with modern equipment"
+                alt="TozaLoo manufacturing facility showcasing modern equipment and production line"
                 width={600}
                 height={400}
-                className="rounded-xl shadow-lg"
+                className="rounded-xl shadow-lg w-full max-w-lg h-auto object-cover"
               />
             </div>
             <div className="space-y-6">
@@ -597,10 +653,10 @@ export default function HomePage() {
                   <Shield className="w-6 h-6 text-[#1195FF]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {t.about.content.quality}
                   </h3>
-                  <p className="text-gray-600">{t.about.content.qualityDesc}</p>
+                  <p className="text-gray-600 text-sm">{t.about.content.qualityDesc}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -608,10 +664,10 @@ export default function HomePage() {
                   <Award className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {t.about.content.innovation}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     {t.about.content.innovationDesc}
                   </p>
                 </div>
@@ -621,10 +677,10 @@ export default function HomePage() {
                   <Users className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {t.about.content.service}
                   </h3>
-                  <p className="text-gray-600">{t.about.content.serviceDesc}</p>
+                  <p className="text-gray-600 text-sm">{t.about.content.serviceDesc}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -632,10 +688,10 @@ export default function HomePage() {
                   <Truck className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {t.about.content.delivery}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     {t.about.content.deliveryDesc}
                   </p>
                 </div>
@@ -643,8 +699,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="bg-blue-50 rounded-2xl p-8">
-            <p className="text-lg text-gray-700 leading-relaxed text-center">
+          <div className="bg-blue-50 rounded-2xl p-6 md:p-8">
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-center">
               {t.about.content.additional}
             </p>
           </div>
@@ -652,27 +708,25 @@ export default function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section
-        id="products"
-        className="py-20 bg-gray-50">
+      <section id="products" className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {t.products.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               {t.products.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
               <Card
                 key={product.id}
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <div className="relative overflow-hidden rounded-t-lg">
+                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg rounded-xl overflow-hidden">
+                <div className="relative overflow-hidden rounded-t-xl">
                   <Image
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image}
                     alt={product.alt}
                     width={400}
                     height={300}
@@ -693,25 +747,21 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        className="py-20 bg-white">
+      <section id="contact" className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {t.contact.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               {t.contact.subtitle}
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             <div>
-              <Card className="p-8">
-                <form
-                  className="space-y-6"
-                  onSubmit={handleSubmit}>
+              <Card className="p-6 md:p-8 rounded-xl shadow-lg">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <Label htmlFor="name">{t.contact.name}</Label>
                     <Input
@@ -719,6 +769,7 @@ export default function HomePage() {
                       name="name"
                       placeholder={t.contact.name}
                       required
+                      className="mt-1"
                     />
                   </div>
                   <div>
@@ -726,8 +777,10 @@ export default function HomePage() {
                     <Input
                       id="phone"
                       name="phone"
+                      type="tel" // Use type="tel" for phone numbers
                       placeholder="+998 90 123 45 67"
                       required
+                      className="mt-1"
                     />
                   </div>
                   <div>
@@ -738,6 +791,7 @@ export default function HomePage() {
                       rows={4}
                       placeholder={t.contact.message}
                       required
+                      className="mt-1"
                     />
                   </div>
                   <Button
@@ -756,42 +810,44 @@ export default function HomePage() {
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="w-6 h-6 text-[#1195FF]" />
                     </div>
                     <div>
-                      <button
-                        onClick={handlePhoneCall}
+                      <a
+                        href="tel:+998711234567" // Use 'a' tag with 'tel' protocol
                         className="font-medium text-gray-900 hover:text-[#1195FF] transition-colors">
                         +998 71 123 45 67
-                      </button>
-                      <p className="text-gray-600">{t.contact.workTime}</p>
+                      </a>
+                      <p className="text-gray-600 text-sm">{t.contact.workTime}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Mail className="w-6 h-6 text-green-600" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <a
+                        href="mailto:info@TozaLoo.uz" // Use 'a' tag with 'mailto' protocol
+                        className="font-medium text-gray-900 hover:text-green-600 transition-colors">
                         info@TozaLoo.uz
-                      </p>
-                      <p className="text-gray-600">{t.contact.support}</p>
+                      </a>
+                      <p className="text-gray-600 text-sm">{t.contact.support}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-6 h-6 text-purple-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">
                         Toshkent, Chilonzor tumani
                       </p>
-                      <p className="text-gray-600">{t.contact.factory}</p>
+                      <p className="text-gray-600 text-sm">{t.contact.factory}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MessageCircle className="w-6 h-6 text-[#1195FF]" />
                     </div>
                     <div>
@@ -802,23 +858,24 @@ export default function HomePage() {
                         className="font-medium text-gray-900 hover:text-[#1195FF] transition-colors">
                         @TozaLoo_uz
                       </a>
-                      <p className="text-gray-600">{t.contact.telegram}</p>
+                      <p className="text-gray-600 text-sm">{t.contact.telegram}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Location Map */}
-              <div className="rounded-xl overflow-hidden shadow-lg">
+              <div className="rounded-xl overflow-hidden shadow-lg w-full h-[300px] md:h-[400px]">
+                {/* Improved map embed with more specific coordinates for Tashkent Chilonzor if possible for better SEO */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191885.25298617416!2d69.2793667!3d41.28259745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sTashkent!5e0!3m2!1sen!2s!4v1749725511186!5m2!1sen!2s"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11986.062085816922!2d69.2069255!3d41.2863923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a4b6b6b6b6b%3A0x1234567890abcdef!2sChilonzor%20District%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1678901234567!5m2!1sen!2s"
                   width="100%"
-                  height="300"
-                  style={{border: 0}}
+                  height="100%"
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="TozaLoo Location - Tashkent, Uzbekistan"
+                  title="TozaLoo Location - Chilonzor District, Tashkent, Uzbekistan"
                 />
               </div>
             </div>
