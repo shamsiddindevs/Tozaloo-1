@@ -24,10 +24,14 @@ export const metadata: Metadata = {
   // Keywords (less impactful now, but can still provide context)
   keywords: [
     "pol latta",
+    "pol lattalar",
+    "pollatta",
+    "pollattalar",
     "tozalash mahsulotlari",
     "tozaloo",
     "o'zbekiston",
     "toshkent",
+    "tashkent",
     "eksport",
     "MDH",
     "gilam tozalash",
