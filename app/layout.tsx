@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "tozaloo",
     "o'zbekiston",
     "toshkent",
-    "tashkent",
+    "tashkent pol lattalari",
     "eksport",
     "MDH",
     "gilam tozalash",
